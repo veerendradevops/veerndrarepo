@@ -1,11 +1,12 @@
 ---
 - hosts: all
-  become: true
+  become: yes
   tasks:
+  - name: "update packages"
     apt:
-    - name: install nginx
-      apt: 
-        name: nginx 
-        state: present 
-      
-      
+      name:
+      update_cache: yes
+  - name: "install nginx"
+    apt:
+      name: nginx
+      state: present
