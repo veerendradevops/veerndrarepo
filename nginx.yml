@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: targets
   become: yes
   tasks:
   - name: "install nginx"
