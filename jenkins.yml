@@ -12,6 +12,7 @@
       question: shared/accepted-oracle-licence-v1-1
       value: 'true'
       vtype: select
+    notify: apt-get update
   handlers:
   - name: apt-get update
     apt:
