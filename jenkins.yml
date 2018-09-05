@@ -2,9 +2,6 @@
 - hosts: all
   become: yes
   tasks:
-  - name: updating packages
-    apt:
-      update-cache: yes
   - name: aading java ppa repo
     apt_repository:
       repo: ppa:webupd8team/java
