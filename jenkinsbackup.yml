@@ -22,10 +22,9 @@
       - oracle-java8-set-default
   - name: java path setting
     lineinfile:
-      path: /etc/environment
+      dest: /etc/environment
       line: 'export JAVA_HOME="/usr/lib/jvm/java-8-oracle"' 
   - name: setting maven path upto bin
     lineinfile:
-      path: /etc/environment
+      dest: /etc/environment
       line: 'export PATH=$PATH:$JAVA_HOME/bin'
- 
