@@ -6,11 +6,12 @@
     apt_repository:
       repo: ppa:webupd8team/java
     notify: apt-get update
-  handlers:
-  - name: apt-get update
-    apt:
-      update_cache: yes
   - name: installing java 8 
     apt:
       name: oracle-java8-installer
       state: present
+  handlers:
+  - name: apt-get update
+    apt:
+      update_cache: yes
+  
