@@ -7,9 +7,11 @@
       repo: ppa:webupd8team/java
     notify: apt-get update
   - name: installing java 8 
-    apt:
+    debconf:
       name: oracle-java8-installer
-      state: present
+      question: shared/accepted-oracle-licence-v1-1
+      value: 'true'
+      vtype: select
   handlers:
   - name: apt-get update
     apt:
