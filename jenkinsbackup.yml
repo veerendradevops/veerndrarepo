@@ -28,7 +28,7 @@
     lineinfile:
      path: /etc/environment
      line: 'export PATH=$PATH:$JAVA_HOME/bin'
-   - name: installing unzip
+  - name: installing unzip
     package:
      name:
       - unzip
