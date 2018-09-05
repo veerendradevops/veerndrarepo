@@ -8,3 +8,8 @@
   - name: aading java ppa repo
     apt_repository:
       repo: ppa:webupd8team/java
+    notify: apt-get update
+  handlers:
+  - name: apt-get update
+    apt:
+      update_cache: yes
