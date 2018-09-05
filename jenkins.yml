@@ -2,6 +2,10 @@
 - hosts: all
   become: yes
   tasks:
+  - name: installing git
+    apt:
+      name: git
+      state: present
   - name: aading java ppa repo
     apt_repository:
       repo: ppa:webupd8team/java
