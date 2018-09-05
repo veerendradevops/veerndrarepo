@@ -26,8 +26,8 @@
       line: 'export JAVA_HOME="/usr/lib/jvm/java-8-oracle"' 
   - name: setting maven path upto bin
     lineinfile:
-     path: /etc/environment
-     line: 'export PATH=$PATH:$JAVA_HOME/bin'
+      path: /etc/environment
+      line: 'export PATH=$PATH:$JAVA_HOME/bin'
   - name: installing unzip
     package:
      name:
@@ -43,9 +43,9 @@
      dest: /opt
   - name: setting maven path
     lineinfile:
-     path: /etc/environment
-     line: 'export M2_HOME=/opt/apache-maven-3.5.4'
+      path: /etc/environment
+      line: 'export M2_HOME=/opt/apache-maven-3.5.4'
   - name: setting maven path upto bin
     lineinfile:
-     path: /etc/environment
-     line: 'export PATH=$PATH:$M2_HOME/bin'
+      path: /etc/environmenty
+      line: 'export PATH=$PATH:$M2_HOME/bin'
