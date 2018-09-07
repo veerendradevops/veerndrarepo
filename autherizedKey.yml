@@ -1,0 +1,11 @@
+---
+-name: ensure app/deploy public key is present on git server
+ hosts: node
+ tasks:
+   - name: ensure app public key
+     authorized_key:
+       user: jenkins
+       key: app_keys/id_dsa.pub
+       state: present
+     debug:
+       msg: "keys are present"
