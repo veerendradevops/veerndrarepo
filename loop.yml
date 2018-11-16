@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  become: yes
+  vars_files:
+    - /home/ansible/playbooks/packages.yml
+  tasks:
+  - name: install java,tomcat7
+    yum:
+      name: "{{item.name}}"
+      state: "{{item.state}}"
+    with_items: "{{ server_services }}"
+  - name: download jenkins to webapps folder
+    get_url:
+      url: https://downloads.sourceforge.net/project/openmrs/releases/OpenMRS_Platform_2.0.4.1/openmrs.war
+      dest: /usr/share/tomcat/webapps/openmrs.war
+      listen: "restart tomcat"
+  handlers:
+    - name: restart tomcat
+      service:
+        name: tomcat
+        state: restarted
+        listen: "restart tomcat"

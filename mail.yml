@@ -1,0 +1,14 @@
+---
+-  hosts: all
+   become: yes
+   tasks:
+    - name: Example playbook send email
+      mail:
+        host: smtp.gmail.com
+        port: 587
+        username: veerendra.toleti@verinon.com
+        password: Veerendr@444
+        to: veerendrakumar toleti <veerendratholeti@gmail.com>
+        subject: Ansible-report
+        body: System {{ ansible_hostname }} has been successfully provisoned
+      delegate_to: localhost

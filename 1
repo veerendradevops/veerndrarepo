@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+  - name: install java,tomcat7
+    yum:
+      name: "{{ item }}"
+      state: present
+      loop:
+        - java-1.8.0-openjdk.x86_64
+        - tomcat
+  - name: download jenkins to webapps folder
+    get_url:
+      url: https://downloads.sourceforge.net/project/openmrs/releases/OpenMRS_Platform_2.0.4.1/openmrs.war
+      dest: /usr/share/tomcat/webapps/openmrs.war
+      listen: "restart tomcat"
+  handlers:
+    - name: restart tomcat
+      service:
+        name: tomcat
+        state: restarted
+        listen: "restart tomcat"

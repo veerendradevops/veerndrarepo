@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - stat:
+        path: /home/centos/ansible
+      register: samplefile
+    - package:
+        name: httpd
+        state: present
+      when: samplefile.stat.exists
