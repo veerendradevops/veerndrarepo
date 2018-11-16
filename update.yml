@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: yes
+  remote_user: ansible
+  tasks:
+  - name: updating package
+    apt:
+      update_cache: yes
+
+

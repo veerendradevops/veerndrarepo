@@ -1,0 +1,51 @@
+- hosts: node
+  become: yes
+  tasks:
+  - name: Add apt repository
+    apt_repository:
+      repo: 'ppa:webupd8team/java'
+      state: present
+      update_cache: yes
+
+  - name: Accept license
+    debconf:
+     name: 'oracle-java8-installer'
+     question: 'shared/accepted-oracle-license-v1-1'
+     value: 'true'
+     vtype: 'select'
+
+  - name: Install java
+    apt: name={{ item }} state=present
+    with_items:
+      - oracle-java8-installer
+      - ca-certificates
+      - oracle-java8-set-default
+  - name: java path setting
+    lineinfile:
+      dest: /etc/environment
+      line: 'export JAVA_HOME="/usr/lib/jvm/java-8-oracle"' 
+  - name: setting java path upto bin
+    lineinfile:
+      dest: /etc/environment
+      line: 'export PATH=$PATH:$JAVA_HOME/bin'
+  - name: installing unzip
+    package:
+     name:
+      - unzip
+  # maven releases https://archive.apache.org/dist/maven/maven-3/
+  - name: instaling maven via wget
+    get_url:
+     url: 'http://www-us.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.zip'
+     dest: /opt
+  - name: extracting the zip file
+    unarchive:
+     src: /opt/apache-maven-3.5.4-bin.zip
+     dest: /opt
+  - name: setting maven path
+    lineinfile:
+     dest: /etc/environment
+     line: 'export M2_HOME=/opt/apache-maven-3.5.4'
+  - name: setting maven path upto bin
+    lineinfile:
+     dest: /etc/environment
+     line: 'export PATH=$PATH:$M2_HOME/bin'
