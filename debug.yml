@@ -1,0 +1,44 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: False
+  vars:
+    nginx_conf: /etc/nginx
+    vhost_path: "{{ nginx_conf }}/conf.d/mattermost.conf"
+  tasks:
+# Debug is often used in conjunction with 'register' to help you figure out what's going on
+    - name: A simple debug statement
+      debug: msg="Test Debugging"
+
+    - shell: /usr/bin/uptime
+      register: myuptime
+
+    - name: Uptime Debugging
+      debug: var=myuptime.stdout
+# you can add a verbosity argument, which ensures that the debug output runs when you pass -v
+    - name: Uptime, verbosity 1
+      debug: var=myuptime verbosity=1
+
+    - name: Uptime, verbosity 2
+      debug: var=myuptime verbosity=2
+
+    - name: Uptime, verbosity 3
+      debug: var=myuptime verbosity=3
+###Register
+    - stat: path=/home/mattermost/mattermost_app
+      register: mattermost_install
+
+    - shell: whoami
+      register: user_name
+
+    - name: Debug var=user_name
+      debug: var=user_name
+
+    - name: Debug var=mattermost_install
+      debug: var=mattermost_install
+
+    - name: Debug msg= "{{ user_name.stdout }}"
+      debug: msg= "{{ user_name.stdout }}"
+
+    - name: Debug msg= "{{ user_name.stderr }}"
+      debug: msg= "{{ user_name.stderr }}"                                       

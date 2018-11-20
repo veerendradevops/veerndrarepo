@@ -5,13 +5,19 @@
     - stat:
         path: /home/centos/ansible
       register: samplefile
+    - debug:
+        msg: "file exists"
+      when: samplefile.stat.exists
     - package:
         name: httpd
         state: present
       when: samplefile.stat.exists
+# we can also user isdir,islink to check the path is directory or link
+# when: samplefile.stat.isdir || when: samplefile.stat.islink
     - service:
         name: "{{ item }}"
         state: started
         enabled: yes
       with_items:
         - httpd
+    

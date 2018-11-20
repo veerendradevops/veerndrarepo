@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: apache2 install
+    package:
+      name: httpd
+      state: present
+    when: ansible_distribution == 'CentOS'
+  - name: checking status of apache2
+    command: sudo systemctl status httpd
+    register: status
+  - name: print the status
+    debug: var=status

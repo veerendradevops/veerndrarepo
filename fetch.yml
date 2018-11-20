@@ -1,0 +1,8 @@
+---
+- hosts: ip-172-31-34-68.ec2.internal
+  become: yes
+  become_user: ansible
+  tasks:
+  - fetch: 
+      src: /home/ansible/vk
+      dest: /home/ubuntu
