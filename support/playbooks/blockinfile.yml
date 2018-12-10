@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: block in file
+    blockinfile:
+#    block: "{{ lookup('file', '/root/playbooks/mani.sh') }}"
+      path: /root/veeru_ansible_zone/support/playbooks/mani.sh
+      dest: /root/veeru_ansible_zone/support/playbooks/vk

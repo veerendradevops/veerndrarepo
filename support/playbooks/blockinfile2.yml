@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: storing the content in content variable
+    set_fact:
+      content: "{{ lookup('template', '/root/veeru.sh') }}"
+  - name: block in file
+    blockinfile:
+      dest: /root/mg
+      content: '{{ content }}'
+      state: present
