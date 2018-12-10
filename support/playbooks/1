@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: block in file
+    blockinfile:
+      path: /root/playbooks/mani.j2
+      dest: /root/playbooks/vk

@@ -1,0 +1,17 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: command
+    command: hostname
+    register: ans_hostname
+  - name: debug
+    debug:
+      var: ans_hostname.stdout
+  - name: checking status of file
+    stat:
+      path: /root/playbooks/chinna
+    register: chinni
+  - name: Move file
+    command: mv /root/playbooks/chinna /root/playbooks/chi.{{ ans_hostname.stdout }}.nna 
+    when: chinni.stat.exists

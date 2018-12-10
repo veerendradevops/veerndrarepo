@@ -1,0 +1,17 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: install apache2
+    yum:     
+      name: httpd
+      state: present
+      update_cache: yes
+  - name: restartig apache
+    service:
+      name: httpd
+      state: started
+  - name: template
+    template:
+      src: /root/playbooks/mani.j2
+      dest: /root/playbooks/vk

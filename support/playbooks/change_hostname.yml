@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: yes
+  tasks: 
+  - name: command
+    command: hostname
+    register: ans_hostname
+  - name: debug
+    debug:
+      var: ans_hostname.stdout 
+  - name: chage hostname
+    command: cp /root/playbooks/jaffa /root/playbooks/vk.{{ ans_hostname.stdout }}.tholeti
