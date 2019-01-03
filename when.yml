@@ -20,4 +20,22 @@
         enabled: yes
       with_items:
         - httpd
+        
+        ----------------------------
+        
+        --- 
+        https://www.middlewareinventory.com/blog/ansible-changed_when-and-failed_when-examples/
+- hosts: web
+  tasks:
+  - name: "Determine if the HTTPD is installed"
+    register: validatehttpd
+    shell: httpd
+
+  - name: Ensure Apache is at the Latest version
+    become: yes
+    become_user: root
+    yum:
+      name: httpd
+      state: latest
+    when: 'not found' in validatehttpd.stdout
     
