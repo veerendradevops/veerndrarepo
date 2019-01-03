@@ -24,7 +24,7 @@
         ----------------------------
         
         --- 
-        https://www.middlewareinventory.com/blog/ansible-changed_when-and-failed_when-examples/
+        //https://www.middlewareinventory.com/blog/ansible-changed_when-and-failed_when-examples//
 - hosts: web
   tasks:
   - name: "Determine if the HTTPD is installed"
