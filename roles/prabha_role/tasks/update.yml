@@ -1,0 +1,5 @@
+---
+- name: return motd to registered var
+ # command: sudo apt-get update
+  apt:
+    update_cache: yes

@@ -1,0 +1,17 @@
+---
+- include_tasks: update.yml
+#- import_tasks: install.yml
+#- import_tasks: copy.yml
+#- name: return motd to registered var
+#  command: sudo apt-get update
+#- name: Install apache httpd but avoid starting it immediately
+ # apt:
+ #   name: apache2
+  #  state: present
+#- name: example copying file with owner and permissions
+ # copy:
+  #  src: /home/ansible/support/prabha.html
+   # dest: /var/www/html/prabha.html
+ # notify:
+  #- restart apache
+  

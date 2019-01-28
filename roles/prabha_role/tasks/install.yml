@@ -1,0 +1,5 @@
+---
+- name: Install apache httpd but avoid starting it immediately
+  apt:
+    name: apache2
+    state: present

@@ -1,0 +1,7 @@
+---
+- name: example copying file with owner and permissions
+  copy:
+    src: /home/ansible/support/prabha.html
+    dest: /var/www/html/prabha.html
+  notify:
+  - restart apache

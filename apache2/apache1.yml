@@ -7,9 +7,15 @@
       name: httpd
       state: present
     when: ansible_distribution == 'CentOS'
+  - name: apache2 service start
+    service:
+      name: httpd
+      pattern: /usr/sbin/httpd
+      state: started
   - name: checking status of apache2
     command: sudo systemctl status httpd
     register: is_installed
   - name: print the status
     debug: 
-      var: is_installed.stdout_lines
+      var: is_installed.stdout_lines.active
+  
