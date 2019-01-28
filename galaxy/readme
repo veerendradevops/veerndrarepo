@@ -1,0 +1,19 @@
+I'd like to build a quick LAMP server to test some newfangled PHP script I wrote with one big 800 line function. So, I'll just do the following:
+
+$ ansible-galaxy install geerlingguy.apache geerlingguy.mysql geerlingguy.php
+
+The latest version will be downloaded if no version is specified. To specify a version, add the version after the role name[2]:
+
+$ ansible-galaxy install geerlingguy.apache,1.0.0 geerlingguy.mysql,1.0.0 geerlingguy.php,1.0.0
+
+1. Create an Ansible playbook named lamp.yml with the following contents:
+
+---
+- hosts: all
+  roles:
+  - geerlingguy.mysql
+  - geerlingguy.apache
+  - geerlingguy.php
+
+2. Run the playbook against a host:
+$ ansible-playbook -i path/to/custom-inventory lamp.yml
