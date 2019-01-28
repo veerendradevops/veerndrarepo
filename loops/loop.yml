@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: update package
+    apt:
+      update_cache: yes
+    tags:
+      - update
+  - name: install apache, tree
+    apt:
+      name: "{{ item }}"
+      state: installed
+    with_items:
+      - apache2
+      - git
+    tags:
+    - install
