@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: update
+    apt:
+      update_cache: yes
+    tags:
+      - update
+# ansible-playbook tag.yml --tags "update"
+# ansible-playbook skip.yml --skip-tags "update"
