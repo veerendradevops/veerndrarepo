@@ -1,0 +1,35 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: update packages
+    apt:
+      update_cache: yes
+  - name: install nodejs
+    apt:
+      name: nodejs
+      state: present
+  - name: install npm
+    apt:
+      name: npm
+      state: present
+  - name: copy files using templates
+    template:
+      src: /home/ansible/veeru_ansible_zone/nodejs/package.json.j2
+      dest: /home/ansible/package.json
+  - name: copy files using templates
+    template:
+      src: /home/ansible/veeru_ansible_zone/nodejs/app.js.j2
+      dest: /home/ansible/app.js
+  - name: copy files using templates
+    template:
+      src: /home/ansible/veeru_ansible_zone/nodejs/index.html.j2
+      dest: /home/ansible/index.html
+  - name: copy files using templates
+    template:
+      src: /home/ansible/veeru_ansible_zone/nodejs/about.html.j2
+      dest: /home/ansible/about.html
+  - name: install npm
+    command: npm install
+  - name: npm start
+    command: npm start
